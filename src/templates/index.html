@@ -1,4 +1,5 @@
 {% load static %}
+{% static "images" as baseUrl %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,10 +34,16 @@
 								<nav class="main_nav">
 									<ul class="d-flex flex-row align-items-start justify-content-start">
 										<li class="active"><a href="index.html">Home</a></li>
-										<li><a href="about.html">About us</a></li>
-										<li><a href="#">Services</a></li>
-										<li><a href="#">News</a></li>
 										<li><a href="contact.html">Contact</a></li>
+										{% if user.is_authenticated %}
+										<li>Hello, {{user.first_name}}</li>
+										<li><a href="accounts/logout">Logout</a></li>
+										{% else %}
+
+
+										<li><a href="accounts/register">Register</a></li>
+										<li><a href="accounts/login">Login</a></li>
+										{% endif %}
 									</ul>
 								</nav>
 								<div class="header_phone ml-auto">Call us: 00-56 445 678 33</div>
@@ -109,7 +116,7 @@
 					<!-- Slide -->
 					<div class="owl-item">
 						<div class="background_image"
-							style="background-image:url({% static 'images/home_slider.jpg'%})"></div>
+							style="background-image:url({% static 'images/home_slider.jpg' %})"></div>
 						<div class="home_slider_content_container">
 							<div class="container">
 								<div class="row">
@@ -281,53 +288,30 @@
 
 	
 							<!-- Destination -->
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="{% static 'images/destination_4.jpg' %}" alt="image">
-									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
-								</div>
-								<div class="destination_content">
-									<div class="destination_title"><a href="destinations.html">Mumbai</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>The city never sleeps </p>
-									</div>
-									<div class="destination_price">From $1000</div>
-								</div>
-							</div>
-
+							{% for dest in Destin %}
 
 							<div class="destination item">
 								<div class="destination_image">
-									<img src="{% static 'images/destination_1.jpg' %}" alt="image">
+									<img src="{{dest.img.url}}" alt="image">
+									{% if dest.offer == True %}
 									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+									{% else %}
+									<div class="spec_offer text-center"><a href="#">No Special Offer</a></div>
+									{% endif %}
 								</div>
 								<div class="destination_content">
-									<div class="destination_title"><a href="destinations.html">{{dest1.name}}</a>
+									<div class="destination_title"><a href="destinations.html">{{dest.name}}</a>
 									</div>
 									<div class="destination_subtitle">
-										<p>Biggest City </p>
+										<p>{{dest.desc}}</p>
 									</div>
-									<div class="destination_price">From ${{dest1.price}}</div>
+									<div class="destination_price">From ${{dest.price}}</div>
 								</div>
 							</div>
 
+							{% endfor %}
 
-							<div class="destination item">
-								<div class="destination_image">
-									<img src="{% static 'images/destination_3.jpg' %}" alt="image">
-									<div class="spec_offer text-center"><a href="#">Special Offer</a></div>
-								</div>
-								<div class="destination_content">
-									<div class="destination_title"><a href="destinations.html">Kolkata</a>
-									</div>
-									<div class="destination_subtitle">
-										<p>Garden City </p>
-									</div>
-									<div class="destination_price">From $100</div>
-								</div>
-							</div>
-
+							
 
 						</div>
 					</div>
