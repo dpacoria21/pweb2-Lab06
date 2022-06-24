@@ -23,7 +23,7 @@
 	<div class="super_container">
 
 		<!-- Header -->
-
+		{% block content1 %}
 		<header class="header">
 			<div class="container">
 				<div class="row">
@@ -37,7 +37,7 @@
 										<li><a href="contact.html">Contact</a></li>
 										{% if user.is_authenticated %}
 										<li>Hello, {{user.first_name}}</li>
-										<li><a href="addDestination">Add Destination</a></li>
+										<li><a href="listarDestinos">Destinos</a></li>
 										<li><a href="accounts/logout">Logout</a></li>
 										{% else %}
 
@@ -71,9 +71,9 @@
 				</ul>
 			</div>
 		</header>
-
+		{% endblock %}
 		<!-- Menu -->
-
+		{% block content3 %}
 		<div class="menu">
 			<div class="menu_header d-flex flex-row align-items-center justify-content-start">
 				<div class="menu_logo"><a href="index.html">Travello</a></div>
@@ -105,9 +105,9 @@
 				</ul>
 			</div>
 		</div>
-
+		{%endblock%}
 		<!-- Home -->
-
+		{% block content4 %}
 		<div class="home">
 
 			<!-- Home Slider -->
@@ -182,9 +182,9 @@
 				</div>
 			</div>
 		</div>
-
+		{% endblock %}
 		<!-- Search -->
-
+		{% block content5 %}
 		<div class="home_search">
 			<div class="container">
 				<div class="row">
@@ -212,9 +212,9 @@
 				</div>
 			</div>
 		</div>
-
+		{% endblock %}
 		<!-- Intro -->
-
+		{% block content2 %}
 		<div class="intro">
 			<div class="intro_background" style="{% static 'background-image:url("images/beach.svg")'%}"></div>
 			<div class="container">
@@ -270,7 +270,7 @@
 				</div>
 			</div>
 		</div>
-
+		{% endblock %}
 		<!-- Destinations -->
 
 		<div class="destinations" id="destinations">
