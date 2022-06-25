@@ -33,13 +33,14 @@ def index(request):
 def modDestino(request, myID):
     obj = Destination.objects.get(id=myID)
     if request.method == 'POST':
-        form = DestinationForm(request.POST,request.FILES)
-        form.instance = obj
+        print('entro de una aqui senito')
+        form = DestinationForm(request.POST,request.FILES,instance=obj)
         if form.is_valid():
             form.save()
             form = DestinationForm()
             return redirect('/listarDestinos')
     else:
+        print('here')
         form = DestinationForm(request.POST or None,instance=obj)
     context = {
         'form': form,
