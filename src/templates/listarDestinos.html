@@ -16,13 +16,14 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/estilos.css'%}">
 </head>
 
-<body>
+<body style="background-color: skyblue;">
 
     
-    <div class="destinations" id="destinations" style="background-color: antiquewhite;">
-        <div class="container" style="background-color: antiquewhite;">
+    <div class="destinations" id="destinations" style="background-color: skyblue;">
+        <div class="container">
             <div class="row">
                 <div class="col text-center">
                     <nav class="main_nav" >
@@ -38,36 +39,30 @@
             </div>
             <div class="row destinations_row">
                 <div class="col">
-                    <div class="destinations_container item_grid">
+                    <div class="container">
 
 
                         <!-- Destination -->
                         {% for dest in Destin %}
 
-                        <div class="destination item">
-                            <div class="destination_image">
+                        
+                            <div class="card" style="height: auto;">
                                 <img src="{{dest.img.url}}" alt="image">
                                 {% if dest.offer == True %}
-                                <div class="spec_offer text-center"><a href="#">Special Offer</a></div>
+                                <h4 class="spec_offer text-center"><a href="#">Special Offer</a></h4>
                                 {% else %}
-                                <div class="spec_offer text-center"><a href="#">No Special Offer</a></div>
+                                <h4 class="spec_offer text-center"><a href="#">No Special Offer</a></h4>
                                 {% endif %}
+                                <a href="destinations.html">{{dest.name}}</a>
+                                <p>{{dest.desc}}</p>
+                                <h4>From ${{dest.price}}</h4>
+                                <h4><a href="modDestino/{{dest.id}}">Modificar Archivo</a></h4>
+                                <h4><a href="eliminarDestino/{{dest.id}}">Eliminar Archivo</a></h4>
                             </div>
-                            <div class="destination_content">
-                                <div class="destination_title"><a href="destinations.html">{{dest.name}}</a>
-                                </div>
-                                <div class="destination_subtitle">
-                                    <p>{{dest.desc}}</p>
-                                </div>
-                                <div class="destination_price">From ${{dest.price}}
-                                    <div class="destination_title"><a href="modDestino/{{dest.id}}">Modificar Archivo</a></div>
-                                    <div class="destination_title"><a href="eliminarDestino/{{dest.id}}">Eliminar Archivo</a></div>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                         {% endfor %}
-
+                    </div>
                         
 
                     </div>

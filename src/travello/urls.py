@@ -6,5 +6,5 @@ urlpatterns = [
     path('addDestination/<int:myID>', views.addDestination, name='addDestination'),
     path('listarDestinos', views.listarDestinos, name='listarDestinos'),
     path('modDestino/<int:myID>', views.modDestino, name='modDestino'),
-    path('eliminarDestino', views.eliminarDestino, name='eliminarDestino'),
+    path('eliminarDestino/<int:myID>', views.eliminarDestino, name='eliminarDestino'),
 ]

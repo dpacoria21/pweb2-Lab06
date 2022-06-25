@@ -1,6 +1,7 @@
+from gc import get_objects
 from imp import reload
 from unicodedata import name
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Destination
 from .forms import DestinationForm
 # Create your views here.
@@ -48,4 +49,13 @@ def modDestino(request, myID):
     return render(request, 'modDestino.html',context)
 
 def eliminarDestino(request, myID):
-    return render(request, 'eliminarDestino.html')
+    obj = Destination.objects.get(id = myID)
+    if request.method == 'POST':
+        obj= get_object_or_404(Destination, id=myID)
+        print("Lo borro")
+        obj.delete()
+        return redirect('/listarDestinos')
+    context = {
+        'dest' : obj
+    }
+    return render(request, 'eliminarDestino.html', context)
